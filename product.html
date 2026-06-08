@@ -436,208 +436,182 @@
 </a>
 
 <script>
-const PRODUCTS = [
-  { id:'kucing-lucu', name:'Keychain Kucing Lucu', price:25000, cat:['ready','keychain'], status:'Ready Stock', emoji:'🐱', c1:'#F4C7B5', c2:'#E8A088',
-    desc:'Kucing oren si paling sat-set. Dibentuk satu-satu dengan detail kumis dan ekspresi unik di tiap pcs — jadi punyamu nggak akan sama persis dengan punya orang lain.',
-    colors:[{name:'Peach',c1:'#F4C7B5',c2:'#E8A088'},{name:'Cream',c1:'#FBF1E2',c2:'#E8C898'},{name:'Sage',c1:'#C9DDD0',c2:'#7BAE91'},{name:'Pink',c1:'#F8DDE5',c2:'#E8B5C5'}],
-    altEmojis:['🐱','🐈','😺','🐾'], rating:4.9, reviews:42, sold:'120+ terjual', size:'3–4 cm' },
-  { id:'kelinci-pastel', name:'Keychain Kelinci Pastel', price:28000, cat:['ready','keychain'], status:'Ready Stock', emoji:'🐰', c1:'#F8DDE5', c2:'#E8B5C5',
-    desc:'Kelinci dengan telinga panjang & pipi tembem. Warna pastel soft yang cocok dipasang di tas sekolah, kunci motor, atau jadi kado last-minute.',
-    colors:[{name:'Pink',c1:'#F8DDE5',c2:'#E8B5C5'},{name:'Cream',c1:'#FFF0DD',c2:'#E8C898'},{name:'Lavender',c1:'#E8D3F0',c2:'#C9A8DD'}],
-    altEmojis:['🐰','🐇','🌸','💕'], rating:4.9, reviews:38, sold:'95+ terjual', size:'3–5 cm' },
-  { id:'karakter-custom', name:'Keychain Karakter Custom', price:45000, cat:['custom','keychain'], status:'Custom', emoji:'✨', c1:'#E8D3F0', c2:'#C9A8DD',
-    desc:'Mau request karakter favoritmu? Kirim foto/sketsa, kami diskusi detail, dan kami wujudkan jadi keychain. Termasuk 1× revisi gratis sebelum produksi.',
-    colors:[{name:'Lavender',c1:'#E8D3F0',c2:'#C9A8DD'},{name:'Peach',c1:'#F4C7B5',c2:'#E8A088'},{name:'Mint',c1:'#C9DDD0',c2:'#7BAE91'},{name:'Butter',c1:'#FFE2B5',c2:'#E8B45A'}],
-    altEmojis:['✨','🎨','🖌️','💫'], rating:5.0, reviews:24, sold:'40+ terjual', size:'4–6 cm' },
-  { id:'couple-custom', name:'Keychain Couple Custom', price:85000, cat:['custom','keychain','couple'], status:'Custom · 2 pcs', emoji:'💑', c1:'#FFE2B5', c2:'#E8B45A',
-    desc:'2 keychain matching untuk kamu dan pasangan, sahabat, atau partner-in-crime. Bisa custom karakter, nama, atau initial. Dikirim dalam 1 packaging gift box.',
-    colors:[{name:'Butter',c1:'#FFE2B5',c2:'#E8B45A'},{name:'Peach',c1:'#F4C7B5',c2:'#E8A088'},{name:'Pink',c1:'#F8DDE5',c2:'#E8B5C5'}],
-    altEmojis:['💑','💕','👫','🤝'], rating:5.0, reviews:18, sold:'30+ terjual', size:'4–5 cm /pcs' },
-  { id:'miniatur-hewan', name:'Miniatur Hewan Clay', price:35000, cat:['ready','miniatur'], status:'Ready Stock', emoji:'🐻', c1:'#C9DDD0', c2:'#7BAE91',
-    desc:'Mini figurine yang bisa kamu pajang di meja kerja atau rak buku. Bukan keychain — ini benar-benar miniatur 5–7 cm dengan detail lebih rich.',
-    colors:[{name:'Sage',c1:'#C9DDD0',c2:'#7BAE91'},{name:'Brown',c1:'#F2D8B8',c2:'#A87850'},{name:'Cream',c1:'#FFF0DD',c2:'#E8C898'}],
-    altEmojis:['🐻','🦊','🐨','🦝'], rating:4.8, reviews:29, sold:'70+ terjual', size:'5–7 cm' },
-  { id:'nama-custom', name:'Keychain Nama Custom', price:42000, cat:['custom','keychain'], status:'Custom', emoji:'🌸', c1:'#F2D8B8', c2:'#D9A878',
-    desc:'Tulis nama, panggilan, atau kata favorit kamu — kami bentuk jadi keychain dengan dekorasi bunga atau emoji pilihan kamu.',
-    colors:[{name:'Caramel',c1:'#F2D8B8',c2:'#D9A878'},{name:'Pink',c1:'#F8DDE5',c2:'#E8B5C5'},{name:'Sage',c1:'#C9DDD0',c2:'#7BAE91'}],
-    altEmojis:['🌸','🌼','🌺','🌷'], rating:4.9, reviews:33, sold:'85+ terjual', size:'4–6 cm (max 8 huruf)' },
-  { id:'matcha-bun', name:'Keychain Matcha Bun', price:24000, cat:['ready','keychain'], status:'Ready Stock', emoji:'🍵', c1:'#D8E8D0', c2:'#9CC2AC',
-    desc:'Roti matcha kecil yang gembul dan menggemaskan. Cocok buat penggemar dessert atau yang suka koleksi food-themed accessories.',
-    colors:[{name:'Matcha',c1:'#D8E8D0',c2:'#9CC2AC'},{name:'Choco',c1:'#E8D5BD',c2:'#A87850'},{name:'Strawberry',c1:'#F8DDE5',c2:'#E8B5C5'}],
-    altEmojis:['🍵','🍡','🥮','🌿'], rating:4.9, reviews:21, sold:'55+ terjual', size:'3 cm' },
-  { id:'panda-mini', name:'Miniatur Panda Mini', price:38000, cat:['ready','miniatur'], status:'Ready Stock', emoji:'🐼', c1:'#EFEFEF', c2:'#A8A8A8',
-    desc:'Panda mungil lagi duduk dengan pose ngantuk. Detail mata bulet hitam yang bikin gemes. Bisa jadi hiasan meja atau dipasang di tas.',
-    colors:[{name:'Classic',c1:'#EFEFEF',c2:'#A8A8A8'}],
-    altEmojis:['🐼','🎋','💤','🤍'], rating:4.9, reviews:27, sold:'62+ terjual', size:'5 cm' },
-  { id:'foto-pet', name:'Keychain Foto Hewan Peliharaan', price:55000, cat:['custom','keychain'], status:'Custom', emoji:'🐶', c1:'#FFD8B5', c2:'#E89F60',
-    desc:'Punya peliharaan kesayangan? Kirim 2-3 foto, kami sculpt jadi keychain mirip aslinya. Cocok juga buat memorial pet yang sudah berpulang 🤍',
-    colors:[{name:'Sesuai foto',c1:'#FFD8B5',c2:'#E89F60'}],
-    altEmojis:['🐶','🐱','🐾','💛'], rating:5.0, reviews:31, sold:'75+ terjual', size:'4–6 cm' },
-  { id:'family-set', name:'Keychain Family Set', price:120000, cat:['custom','keychain','couple'], status:'Custom · 3-4 pcs', emoji:'👨‍👩‍👧', c1:'#F4C7B5', c2:'#C75A42',
-    desc:'Set keychain untuk seluruh keluarga (3–4 pcs). Bisa figur orang, hewan peliharaan, atau campuran. Datang dalam gift box ekstra besar.',
-    colors:[{name:'Warm',c1:'#F4C7B5',c2:'#C75A42'},{name:'Pastel',c1:'#F8DDE5',c2:'#E8B5C5'},{name:'Sage',c1:'#C9DDD0',c2:'#7BAE91'}],
-    altEmojis:['👨‍👩‍👧','👪','💕','🏡'], rating:5.0, reviews:12, sold:'18+ terjual', size:'4–5 cm /pcs' },
-  { id:'donut-pastel', name:'Keychain Donut Pastel', price:22000, cat:['ready','keychain'], status:'Ready Stock', emoji:'🍩', c1:'#FBD3DB', c2:'#E89BAA',
-    desc:'Donut kecil dengan icing pastel dan sprinkle warna-warni. Salah satu seller paling laris — ringan, lucu, dan murah meriah untuk gift.',
-    colors:[{name:'Strawberry',c1:'#FBD3DB',c2:'#E89BAA'},{name:'Choco',c1:'#E8D5BD',c2:'#A87850'},{name:'Matcha',c1:'#D8E8D0',c2:'#9CC2AC'},{name:'Vanilla',c1:'#FFF0DD',c2:'#E8C898'}],
-    altEmojis:['🍩','🧁','🍪','🌈'], rating:4.9, reviews:48, sold:'140+ terjual', size:'3 cm' },
-  { id:'bunny-mini', name:'Miniatur Kelinci Mini', price:32000, cat:['ready','miniatur'], status:'Ready Stock', emoji:'🐇', c1:'#FFF0DD', c2:'#E8C898',
-    desc:'Versi miniatur dari keychain kelinci pastel. Pose duduk dengan telinga panjang & ekspresi kalem. Bisa berdiri sendiri sebagai hiasan.',
-    colors:[{name:'Cream',c1:'#FFF0DD',c2:'#E8C898'},{name:'Pink',c1:'#F8DDE5',c2:'#E8B5C5'},{name:'Grey',c1:'#EFEFEF',c2:'#A8A8A8'}],
-    altEmojis:['🐇','🐰','🥕','💕'], rating:4.8, reviews:19, sold:'45+ terjual', size:'5–6 cm' },
-];
-
 function fmt(n){ return 'Rp ' + n.toLocaleString('id-ID'); }
 
 const params = new URLSearchParams(location.search);
-const id = params.get('id') || PRODUCTS[0].id;
-const product = PRODUCTS.find(p => p.id === id) || PRODUCTS[0];
+const reqId = params.get('id');
 
-// State
-let qty = 1;
-let activeColor = 0;
-let activeEmoji = 0;
-let activeStrap = 'Ring biasa';
+fetch('products.json')
+  .then(r => r.json())
+  .then(PRODUCTS => {
+    const product = (reqId && PRODUCTS.find(p => p.id === reqId)) || PRODUCTS[0];
+    initProduct(product, PRODUCTS);
+  })
+  .catch(() => {
+    document.getElementById('prodName').textContent = 'Gagal memuat produk';
+  });
 
-// Populate
-document.title = product.name + ' — Cute Things by Eca';
-document.getElementById('crumbName').textContent = product.name;
-document.getElementById('prodName').textContent = product.name;
-document.getElementById('prodDesc').textContent = product.desc;
-document.getElementById('priceBig').textContent = fmt(product.price);
-document.getElementById('priceFrom').textContent = product.cat.includes('custom') ? '/ pcs (mulai dari)' : '/ pcs';
-document.getElementById('ratingNum').textContent = product.rating.toFixed(1);
-document.getElementById('reviewCount').textContent = product.reviews;
-document.getElementById('soldCount').textContent = product.sold;
-document.getElementById('specSize').textContent = product.size;
+function initProduct(product, PRODUCTS) {
+  // State
+  let qty = 1;
+  let activeColor = 0;
+  let activeEmoji = 0;
+  let activeStrap = 'Ring biasa';
 
-const badgeEl = document.getElementById('badgePin');
-badgeEl.textContent = product.status;
-if (product.cat.includes('custom')) badgeEl.classList.add('custom');
+  // Populate meta
+  document.title = product.name + ' — Cute Things by Eca';
+  document.getElementById('crumbName').textContent = product.name;
+  document.getElementById('prodName').textContent = product.name;
+  document.getElementById('prodDesc').textContent = product.desc;
+  document.getElementById('priceBig').textContent = fmt(product.price);
+  document.getElementById('priceFrom').textContent = product.cat.includes('custom') ? '/ pcs (mulai dari)' : '/ pcs';
+  document.getElementById('ratingNum').textContent = product.rating.toFixed(1);
+  document.getElementById('reviewCount').textContent = product.reviews;
+  document.getElementById('soldCount').textContent = product.sold;
+  document.getElementById('specSize').textContent = product.size;
 
-const art = document.getElementById('art');
-const mainImg = document.getElementById('mainImg');
-function applyMain(){
-  const c = product.colors[activeColor];
-  mainImg.style.setProperty('--c1', c.c1);
-  mainImg.style.setProperty('--c2', c.c2);
-  art.style.background = `linear-gradient(135deg,${c.c1},${c.c2})`;
-  art.textContent = product.altEmojis[activeEmoji];
-  document.getElementById('colorName').textContent = '— ' + c.name.toLowerCase();
-}
-applyMain();
+  const badgeEl = document.getElementById('badgePin');
+  badgeEl.textContent = product.status;
+  if (product.cat.includes('custom')) badgeEl.classList.add('custom');
 
-// Color options
-const colorOptsEl = document.getElementById('colorOpts');
-if (product.colors.length > 1) {
-  colorOptsEl.innerHTML = product.colors.map((c,i) => `
-    <button class="opt-color ${i===0?'active':''}" data-i="${i}"
-      style="background:linear-gradient(135deg,${c.c1},${c.c2})"
-      aria-label="Warna ${c.name}" title="${c.name}"></button>
-  `).join('');
-  colorOptsEl.addEventListener('click', e => {
-    const btn = e.target.closest('.opt-color');
-    if (!btn) return;
-    colorOptsEl.querySelectorAll('.opt-color').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    activeColor = parseInt(btn.dataset.i);
+  // Gallery main image
+  const art = document.getElementById('art');
+  const mainImg = document.getElementById('mainImg');
+
+  if (product.image) {
+    art.style.display = 'none';
+    const img = document.createElement('img');
+    img.src = product.image;
+    img.alt = product.name;
+    img.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover';
+    mainImg.appendChild(img);
+  }
+
+  function applyMain(){
+    const c = product.colors[activeColor];
+    mainImg.style.setProperty('--c1', c.c1);
+    mainImg.style.setProperty('--c2', c.c2);
+    art.style.background = `linear-gradient(135deg,${c.c1},${c.c2})`;
+    art.textContent = product.altEmojis[activeEmoji];
+    document.getElementById('colorName').textContent = '— ' + c.name.toLowerCase();
+  }
+  applyMain();
+
+  // Color options
+  const colorOptsEl = document.getElementById('colorOpts');
+  if (product.colors.length > 1) {
+    colorOptsEl.innerHTML = product.colors.map((c,i) => `
+      <button class="opt-color ${i===0?'active':''}" data-i="${i}"
+        style="background:linear-gradient(135deg,${c.c1},${c.c2})"
+        aria-label="Warna ${c.name}" title="${c.name}"></button>
+    `).join('');
+    colorOptsEl.addEventListener('click', e => {
+      const btn = e.target.closest('.opt-color');
+      if (!btn) return;
+      colorOptsEl.querySelectorAll('.opt-color').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeColor = parseInt(btn.dataset.i);
+      art.classList.add('dim');
+      setTimeout(() => { applyMain(); art.classList.remove('dim'); }, 150);
+    });
+  } else {
+    document.getElementById('varColor').style.display = 'none';
+  }
+
+  // Thumbnails
+  const thumbsEl = document.getElementById('thumbs');
+  thumbsEl.innerHTML = product.altEmojis.map((em,i) => {
+    const c = product.colors[Math.min(i, product.colors.length-1)];
+    return `<div class="thumb ${i===0?'active':''}" data-i="${i}" style="background:linear-gradient(135deg,${c.c1}33,${c.c2}33)">${em}</div>`;
+  }).join('');
+  thumbsEl.addEventListener('click', e => {
+    const t = e.target.closest('.thumb');
+    if (!t) return;
+    thumbsEl.querySelectorAll('.thumb').forEach(b => b.classList.remove('active'));
+    t.classList.add('active');
+    activeEmoji = parseInt(t.dataset.i);
     art.classList.add('dim');
     setTimeout(() => { applyMain(); art.classList.remove('dim'); }, 150);
   });
-} else {
-  document.getElementById('varColor').style.display = 'none';
-}
 
-// Thumbnails (alt views)
-const thumbsEl = document.getElementById('thumbs');
-thumbsEl.innerHTML = product.altEmojis.map((em,i) => {
-  const c = product.colors[Math.min(i, product.colors.length-1)];
-  return `<div class="thumb ${i===0?'active':''}" data-i="${i}" style="background:linear-gradient(135deg,${c.c1}33,${c.c2}33)">${em}</div>`;
-}).join('');
-thumbsEl.addEventListener('click', e => {
-  const t = e.target.closest('.thumb');
-  if (!t) return;
-  thumbsEl.querySelectorAll('.thumb').forEach(b => b.classList.remove('active'));
-  t.classList.add('active');
-  activeEmoji = parseInt(t.dataset.i);
-  art.classList.add('dim');
-  setTimeout(() => { applyMain(); art.classList.remove('dim'); }, 150);
-});
-
-// Strap options
-document.querySelectorAll('[data-opt]').forEach(b => {
-  b.addEventListener('click', () => {
-    document.querySelectorAll('[data-opt]').forEach(x => x.classList.remove('active'));
-    b.classList.add('active');
-    activeStrap = b.dataset.opt;
-    updateWa();
+  // Strap options
+  document.querySelectorAll('[data-opt]').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('[data-opt]').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      activeStrap = b.dataset.opt;
+      updateWa();
+    });
   });
-});
 
-// Qty
-const qtyNum = document.getElementById('qtyNum');
-const totalTxt = document.getElementById('totalTxt');
-const minus = document.getElementById('qtyMinus');
-const plus = document.getElementById('qtyPlus');
-function updateQty(){
-  qtyNum.textContent = qty;
-  totalTxt.textContent = fmt(product.price * qty);
-  minus.disabled = qty <= 1;
+  // Qty
+  const qtyNum = document.getElementById('qtyNum');
+  const totalTxt = document.getElementById('totalTxt');
+  const minus = document.getElementById('qtyMinus');
+  const plus = document.getElementById('qtyPlus');
+  function updateQty(){
+    qtyNum.textContent = qty;
+    totalTxt.textContent = fmt(product.price * qty);
+    minus.disabled = qty <= 1;
+    updateWa();
+  }
+  minus.addEventListener('click', () => { if (qty > 1) { qty--; updateQty(); } });
+  plus.addEventListener('click', () => { qty++; updateQty(); });
+  updateQty();
+
+  // WA message builder
+  function updateWa(){
+    const c = product.colors[activeColor];
+    const verb = product.cat.includes('custom') ? 'mau pesan custom' : 'tertarik pesan';
+    const lines = [
+      `Halo Eca! Saya ${verb} produk ini:`,
+      ``,
+      `📦 ${product.name}`,
+      `💰 ${fmt(product.price)} × ${qty} = ${fmt(product.price*qty)}`,
+      `🎨 Warna: ${c.name}`,
+      `🔗 Gantungan: ${activeStrap}`,
+      ``,
+      `Boleh info lebih lanjut?`
+    ].join('\n');
+    const url = `https://wa.me/6281234567890?text=${encodeURIComponent(lines)}`;
+    document.getElementById('waBtn').href = url;
+    document.getElementById('floatWa').href = url;
+  }
   updateWa();
+
+  // Like button
+  const likeBtn = document.getElementById('likeBtn');
+  likeBtn.addEventListener('click', () => likeBtn.classList.toggle('liked'));
+
+  // Copy link
+  document.getElementById('copyBtn').addEventListener('click', async () => {
+    const txt = document.getElementById('copyTxt');
+    try{
+      await navigator.clipboard.writeText(location.href);
+      txt.textContent = 'Tersalin ✓';
+    }catch(e){ txt.textContent = 'Gagal salin'; }
+    setTimeout(() => txt.textContent = 'Salin link produk', 1800);
+  });
+
+  // Related products (4 random others)
+  const others = PRODUCTS.filter(p => p.id !== product.id).sort(() => Math.random() - 0.5).slice(0, 4);
+  document.getElementById('related').innerHTML = others.map(p => `
+    <a class="product" href="product.html?id=${p.id}">
+      <div class="pic">
+        ${p.image
+          ? `<img src="${p.image}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover">`
+          : `<div class="placeholder-art" style="--c1:${p.c1};--c2:${p.c2}">${p.emoji}</div>`
+        }
+        <span class="badge ${p.cat.includes('custom')?'custom':''}">${p.status}</span>
+      </div>
+      <div class="info">
+        <div class="name">${p.name}</div>
+        <div class="price">${fmt(p.price)}</div>
+        <span class="pesan">Lihat detail →</span>
+      </div>
+    </a>
+  `).join('');
 }
-minus.addEventListener('click', () => { if (qty > 1) { qty--; updateQty(); } });
-plus.addEventListener('click', () => { qty++; updateQty(); });
-updateQty();
-
-// WA buttons
-function updateWa(){
-  const c = product.colors[activeColor];
-  const verb = product.cat.includes('custom') ? 'mau pesan custom' : 'tertarik pesan';
-  const lines = [
-    `Halo Eca! Saya ${verb} produk ini:`,
-    ``,
-    `📦 ${product.name}`,
-    `💰 ${fmt(product.price)} × ${qty} = ${fmt(product.price*qty)}`,
-    `🎨 Warna: ${c.name}`,
-    `🔗 Gantungan: ${activeStrap}`,
-    ``,
-    `Boleh info lebih lanjut?`
-  ].join('\n');
-  const url = `https://wa.me/6281234567890?text=${encodeURIComponent(lines)}`;
-  document.getElementById('waBtn').href = url;
-  document.getElementById('floatWa').href = url;
-}
-updateWa();
-
-// Like
-const likeBtn = document.getElementById('likeBtn');
-likeBtn.addEventListener('click', () => likeBtn.classList.toggle('liked'));
-
-// Copy link
-document.getElementById('copyBtn').addEventListener('click', async () => {
-  const txt = document.getElementById('copyTxt');
-  try{
-    await navigator.clipboard.writeText(location.href);
-    txt.textContent = 'Tersalin ✓';
-  }catch(e){ txt.textContent = 'Gagal salin'; }
-  setTimeout(() => txt.textContent = 'Salin link produk', 1800);
-});
-
-// Related (4 random others)
-const others = PRODUCTS.filter(p => p.id !== product.id).sort(() => Math.random() - 0.5).slice(0, 4);
-document.getElementById('related').innerHTML = others.map(p => `
-  <a class="product" href="product.html?id=${p.id}">
-    <div class="pic">
-      <div class="placeholder-art" style="--c1:${p.c1};--c2:${p.c2}">${p.emoji}</div>
-      <span class="badge ${p.cat.includes('custom')?'custom':''}">${p.status}</span>
-    </div>
-    <div class="info">
-      <div class="name">${p.name}</div>
-      <div class="price">${fmt(p.price)}</div>
-      <span class="pesan">Lihat detail →</span>
-    </div>
-  </a>
-`).join('');
 </script>
 
 </body>
